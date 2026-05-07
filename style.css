@@ -1,0 +1,36 @@
+:root{
+    --primary_bg: #e8efac;
+    --div_bg: #efc5ac;
+    --txt_colour: #a793ff;
+    --off_colour: #aaaaaa;
+}
+
+body{
+    background-color:var(--primary_bg);
+    margin: 0;
+}
+
+div{
+    background-color: var(--div_bg);
+    margin-top: 10px;
+    
+}
+
+header{
+    background-color: var(--div_bg);
+    padding: 2%;
+    
+}
+
+a{
+    padding: 1vw;
+    color: var(--txt_colour);
+    text-decoration: none;
+    transition: background-color 1s , color 0.5s;
+    border-radius: 10px;
+}
+
+a:hover{
+    background-color: var(--off_colour);
+    color: var(--div_bg);
+}
