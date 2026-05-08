@@ -11,11 +11,14 @@
         {% if session['loggedin'] == True: %}
         <h1>{{  session.username }}</h1>
         <input type="text">
+        <a href="{{ url_for('post')}}">post</a>
+        <a href="">friends</a>
         <a href="{{ url_for('logout') }}">log out</a>
         {% else %}
         <h1>logged out</h1>
         <input type="text">
         <a href="{{ url_for('login') }}">log in</a>
+        <a href="{{ url_for('register') }}">register</a>
         {% endif %}
     </header>
 </body>

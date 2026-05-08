@@ -21,6 +21,10 @@
     </header>
 - lagde en top bar for index intill videre
 
+## 12:38
+- gjorde idex til root side
+- lagde links mellom login, register og index
+
 ## 
 
 ##  kilder
