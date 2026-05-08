@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        {% if session['loggedin'] == True: %}
+        <h1>{{  session.username }}</h1>
+        <input type="text">
+        <a href="{{ url_for('logout') }}">log out</a>
+        {% else %}
+        <h1>logged out</h1>
+        <input type="text">
+        <a href="{{ url_for('login') }}">log in</a>
+        {% endif %}
+    </header>
 </body>
 </html>
