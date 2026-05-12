@@ -1,12 +1,12 @@
 from flask import Flask,request, redirect, render_template, session, url_for
-import mysql.connector
+import mariadb
 import re
 
 app = Flask(__name__)
 app.secret_key = '28ku3fl8Gq17'
 
 def get_dbconection():
-    return mysql.connector.connect(
+    return mariadb.connect(
     host="10.2.1.233",
     user="remoteuser",
     password="IMIKUB",
