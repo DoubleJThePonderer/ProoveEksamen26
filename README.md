@@ -53,20 +53,6 @@ Systemet skal minst ha følgende funksjoner:
 
 ---
 
-## 4. Datamodell
-
-### Oversikt over tabeller
-
-**Tabell 1:**
-- Navn:
-- Beskrivelse:
-
-**Tabell 2:**
-- Navn:
-- Beskrivelse:
-
-*(Minst 2–4 tabeller)*
-
 ## Hva jeg skal gjøre under de tre fagene
 
 ### driftstøtte
@@ -90,12 +76,3 @@ Systemet skal minst ha følgende funksjoner:
 - tags
 - notifiasjon system
 - web server
-
-### Eksempel på tabellstruktur
-```sql
-User(
-  id INT PRIMARY KEY,
-  username VARCHAR(50),
-  email VARCHAR(100),
-  password VARCHAR(255)
-)
