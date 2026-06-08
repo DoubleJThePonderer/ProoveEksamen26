@@ -5,6 +5,10 @@
     --off_colour: #aaaaaa;
 }
 
+h1, h2, h3, p{
+    color: var(--txt_colour);
+}
+
 body{
     background-color:var(--primary_bg);
     margin: 0;
@@ -12,8 +16,7 @@ body{
 
 div{
     background-color: var(--div_bg);
-    margin-top: 10px;
-    
+    padding: 20px;
 }
 
 header{
