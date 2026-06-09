@@ -76,3 +76,14 @@ Systemet skal minst ha følgende funksjoner:
 - tags
 - notifiasjon system
 - web server
+
+
+
+## eksamen plan
+- posting og viewing
+- bcrypt
+- .venv fil
+- masse små viktige ting (faq, design, text, osv.)
+## hviss jeg har tid
+- waitress server
+- email autorisering

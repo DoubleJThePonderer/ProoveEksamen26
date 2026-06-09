@@ -53,3 +53,5 @@ def post():
 
 ##  kilder
 - https://pythonexamples.org/python-flask-if-statement-in-html-template/
+
+

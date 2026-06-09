@@ -7,18 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <header>
         {% if session['loggedin'] == True: %}
         <form action="{{ url_for('post') }}" method="post">
             <input type="text" name="titel" placeholder="titel" required>
-            <input type="text" type="content" placeholder="type what ever is on your mind today" required>
+            <textarea name="content"></textarea>
 
-            <button class="btn" type="submit"></button>
+            <button class="btn" type="submit">post</button>
         </form>
         {% else %}
         <h1>You need to log in to post</h1>
         <p><a href="{{ url_for('login')  }}">log in</a> <a href="{{ url_for('register')  }}">register</a></p>
         {% endif %}
-    </div>
+    </header>
 </body>
 </html>

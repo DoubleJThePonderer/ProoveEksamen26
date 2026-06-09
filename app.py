@@ -15,7 +15,13 @@ def get_dbconection():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    mydb = get_dbconection()
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM posts")
+    result = mycursor.fetchall()
+    mycursor.close()
+    mydb.close()
+    return render_template('index.html', posts = result)
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     mydb = get_dbconection()
@@ -77,15 +83,16 @@ def register():
 def post():
     mydb = get_dbconection()
     msg=''
-    if request.method == 'POST' and 'titel' in request.form and 'content' in request.form:
+    if request.method == 'POST':
         titel = request.form['titel']
         content = request.form['content']
         author = session['username']
         cursor = mydb.cursor()
-        cursor.execute('INSERT INTO posts VALUES(%s,%s,%s)', (titel, content, author))
+        cursor.execute('INSERT INTO posts (title, content, author) VALUES (%s,%s,%s)', (titel, content, author))
         mydb.commit()
-        return render_template('index.html', msg = 'successfully posted')
-        
+        cursor.close()
+        mydb.close()
+        return redirect('/')
     return render_template('post.html', msg=msg)
 
 

@@ -17,6 +17,7 @@ body{
 div{
     background-color: var(--div_bg);
     padding: 20px;
+    margin-top: 10px;
 }
 
 header{
