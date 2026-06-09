@@ -7,7 +7,7 @@ app.secret_key = '28ku3fl8Gq17'
 
 def get_dbconection():
     return mariadb.connect(
-    host="10.2.1.233",
+    host="10.200.14.23",
     user="remoteuser",
     password="IMIKUB",
     database="spillforum"
