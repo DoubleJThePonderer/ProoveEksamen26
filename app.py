@@ -1,6 +1,7 @@
 from flask import Flask,request, redirect, render_template, session, url_for
 import mariadb
 import re
+import bcrypt
 
 app = Flask(__name__)
 app.secret_key = '28ku3fl8Gq17'
@@ -55,6 +56,9 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
         username = request.form['username']
         password = request.form['password']
+        passwordARY = password.encode('utf-8')
+        salt = bcrypt.gensalt()
+        hashedpw = bcrypt.hashpw(passwordARY, salt)
         email = request.form['email']
         cursor = mydb.cursor()
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
@@ -68,9 +72,9 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form'
         else:
-            cursor.execute('INSERT INTO users VALUES(NULL, %s, %s, %s)', (username, password, email))
+            cursor.execute('INSERT INTO users VALUES(NULL, %s, %s, %s)', (username, hashedpw, email))
             mydb.commit()
-            cursor.execute('SELECT * FROM users WHERE username = %s AND password =%s', (username, password))
+            cursor.execute('SELECT * FROM users WHERE username = %s AND password =%s', (username, hashedpw))
             account = cursor.fetchone()
             session['loggedin'] = True
             session['id'] = account[0]
