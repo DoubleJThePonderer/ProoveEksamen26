@@ -82,7 +82,7 @@ Systemet skal minst ha følgende funksjoner:
 ## eksamen plan
 - posting og viewing
 - bcrypt
-- .venv fil
+- .env fil
 - masse små viktige ting (faq, design, text, osv.)
 ## hviss jeg har tid
 - waitress server

@@ -1,17 +1,21 @@
 from flask import Flask,request, redirect, render_template, session, url_for
-import mariadb
-import re
-import bcrypt
+from os import environ
+from dotenv import load_dotenv
+import mariadb, re, bcrypt
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = '28ku3fl8Gq17'
+app.secret_key = environ.get('secret_key')
+salt = environ.get('KEY_SALT')
+saltbyt = salt.encode('utf-8')
 
 def get_dbconection():
     return mariadb.connect(
-    host="10.200.14.23",
-    user="remoteuser",
-    password="IMIKUB",
-    database="spillforum"
+    host=environ.get('DB_HOST'),
+    user=environ.get('DB_USER'),
+    password=environ.get('DB_PASSWORD'),
+    database= environ.get('DB_NAME')
     )
 
 @app.route('/')
@@ -30,8 +34,10 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
+        passwordARY = password.encode('utf-8')
+        hashedpw = bcrypt.hashpw(passwordARY, saltbyt)
         cursor = mydb.cursor()
-        cursor.execute('SELECT * FROM users WHERE username = %s AND password =%s', (username, password))
+        cursor.execute('SELECT * FROM users WHERE username = %s AND password =%s', (username, hashedpw))
         account = cursor.fetchone()
         if account:
             session['loggedin'] = True
@@ -57,8 +63,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         passwordARY = password.encode('utf-8')
-        salt = bcrypt.gensalt()
-        hashedpw = bcrypt.hashpw(passwordARY, salt)
+        hashedpw = bcrypt.hashpw(passwordARY, saltbyt)
         email = request.form['email']
         cursor = mydb.cursor()
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
